@@ -42,7 +42,7 @@ def main():
     message = input('Enter the message to be sent: ').upper()
     receivers = input('Enter who to send the messages to: ')
     assert(len(message) == len(receivers))
-    mixer.music.load(open(START,'rb'))
+    mixer.music.load(open('se/' + START,'rb'))
     mixer.music.play()
     while mixer.music.get_busy():
         sleep(1)
@@ -51,7 +51,7 @@ def main():
         sounds = SOUNDS[receiver]
         print('\nPlaying ' + message[i] + ' for receiver ' + receiver)
         for j in HtoB[message[i]]:
-            mixer.music.load(open(sounds[j],'rb'))
+            mixer.music.load(open('se/' + sounds[j],'rb'))
             mixer.music.play()
             while mixer.music.get_busy():
                 sleep(1)
