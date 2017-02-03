@@ -23,15 +23,18 @@ HtoB = {
 SOUNDS = {
     '1': {
         '0': '10.mp3',
-        '1': '11.mp3'
+        '1': '11.mp3',
+        'start': '1.mp3'
     },
     '2': {
         '0': '20.mp3',
-        '1': '21.mp3'
+        '1': '21.mp3',
+        'start': '2.mp3'
     },
     '3': {
-        '0': '30.mp3',
-        '1': '31.mp3'
+        '0': '30.wav',
+        '1': '31.wav',
+        'start': '3.mp3'
     }
 }
 
@@ -50,12 +53,16 @@ def main():
         receiver = receivers[i]
         sounds = SOUNDS[receiver]
         print('\nPlaying ' + message[i] + ' for receiver ' + receiver)
+        # mixer.music.load(open('se/' + sounds['start'],'rb'))
+        # mixer.music.play()
+        # while mixer.music.get_busy():
+        #         sleep(1)
         for j in HtoB[message[i]]:
+            print(j, end='', flush=True)
             mixer.music.load(open('se/' + sounds[j],'rb'))
             mixer.music.play()
             while mixer.music.get_busy():
                 sleep(1)
-            print(j, end="")
     print()
 
 if __name__ == "__main__":
