@@ -40,26 +40,32 @@ SOUNDS = {
 
 START = 'tindeck.mp3'
 
-def playSound(file):
-    mixer.music.load(open('se/' + file,'rb'))
+def play_sound(sfile):
+    '''
+    Receives a str with the name of the file.
+    '''
+    mixer.music.load(open('se/' + sfile, 'rb'))
     mixer.music.play()
     while mixer.music.get_busy():
         sleep(1)
 
 def main():
+    '''
+    Main sender method.
+    '''
     mixer.init()
     message = input('Enter the message to be sent: ').upper()
     receivers = input('Enter who to send the messages to: ')
     assert(len(message) == len(receivers))
-    playSound(START)
+    play_sound(START)
     for i in range(len(receivers)):
         receiver = receivers[i]
         sounds = SOUNDS[receiver]
         print('\nPlaying ' + message[i] + ' for receiver ' + receiver)
-        playSound(sounds['start'])
+        # play_sound(sounds['start'])
         for j in HtoB[message[i]]:
-            print(j, end='', flush=True)
-            playSound(sounds[j])
+            print (j, end='', flush=True)
+            play_sound(sounds[j])
     print()
 
 if __name__ == "__main__":
