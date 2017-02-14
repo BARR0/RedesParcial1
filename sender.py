@@ -47,7 +47,7 @@ def play_sound(sfile):
     mixer.music.load(open('se/' + sfile, 'rb'))
     mixer.music.play()
     while mixer.music.get_busy():
-        sleep(1)
+        sleep(0.2)
 
 def main():
     '''
@@ -57,12 +57,12 @@ def main():
     message = input('Enter the message to be sent: ').upper()
     receivers = input('Enter who to send the messages to: ')
     assert(len(message) == len(receivers))
-    play_sound(START)
+    # play_sound(START)
     for i in range(len(receivers)):
         receiver = receivers[i]
         sounds = SOUNDS[receiver]
         print('\nPlaying ' + message[i] + ' for receiver ' + receiver)
-        # play_sound(sounds['start'])
+        play_sound(START)
         for j in HtoB[message[i]]:
             print (j, end='', flush=True)
             play_sound(sounds[j])
